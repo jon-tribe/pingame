@@ -4,129 +4,183 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tribe Gaming Pin Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
+            font-family: 'Share Tech Mono', 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #ea0029 0%, #740014 100%);
-            color: white;
+            min-height: 100vh;
+            background: radial-gradient(ellipse at 50% 30%, #23242a 60%, #0a0a0f 100%);
+            color: #e0e0e0;
+            position: relative;
+        }
+        .vault-glow {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .vault-glow::before {
+            content: '';
+            position: absolute;
+            top: 30%; left: 50%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, #ea0029 0%, transparent 70%);
+            opacity: 0.15;
+            transform: translate(-50%, -50%);
+            filter: blur(40px);
         }
         .container {
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
             padding: 2rem;
+            position: relative;
+            z-index: 1;
         }
         header {
             text-align: center;
-            padding: 2rem 0 1rem 0;
+            padding: 2.5rem 0 1.5rem 0;
         }
         .logo {
-            max-width: 120px;
-            margin-bottom: 1rem;
+            max-width: 140px;
+            margin-bottom: 0.7rem;
+            filter: drop-shadow(0 0 12px #ea0029cc);
         }
-        h1 {
+        .main-title {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.2rem;
+            color: #fff;
+            text-shadow: 0 0 12px #ea0029, 0 0 2px #fff;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            color: #ea0029;
+            font-size: 1.15rem;
+            margin-bottom: 1.8rem;
+            text-shadow: 0 0 8px #ea0029cc;
+            letter-spacing: 1px;
         }
         .app-download {
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #181a1f 80%, #ea0029 120%);
+            border-radius: 24px;
+            padding: 2.2rem 2rem;
+            margin: 2.5rem 0 2rem 0;
+            box-shadow: 0 0 40px #ea002950, 0 2px 16px #000a;
+            border: 2px solid #ea0029;
             gap: 2rem;
+            position: relative;
+        }
+        .app-download::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            border: 2px solid #fff2;
+            pointer-events: none;
+            box-shadow: 0 0 32px #ea0029aa inset;
         }
         .app-icon {
-            width: 96px;
-            height: 96px;
+            width: 100px;
+            height: 100px;
             border-radius: 20px;
-            background: #fff;
+            background: #181a1f;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            box-shadow: 0 0 24px #ea0029aa, 0 2px 8px #000a;
+            border: 2px solid #ea0029;
+            overflow: hidden;
         }
         .app-icon img {
             width: 80px;
             height: 80px;
             border-radius: 16px;
+            /* Remove background for transparent avatar */
+            background: transparent;
+            display: block;
         }
         .app-info {
             flex: 1;
         }
         .app-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
+            color: #fff;
+            letter-spacing: 1px;
         }
         .app-version {
             font-size: 1rem;
-            color: #ffd6e0;
-            margin-bottom: 1rem;
+            color: #ea0029;
+            margin-bottom: 1.1rem;
+            text-shadow: 0 0 8px #ea0029cc;
         }
         .download-button {
             display: inline-flex;
             align-items: center;
-            background: #ea0029;
+            background: linear-gradient(90deg, #ea0029 60%, #ff4b2b 100%);
             color: white;
-            padding: 0.9rem 2rem;
-            border-radius: 8px;
+            padding: 1rem 2.2rem;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin-top: 0.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            box-shadow: 0 0 16px #ea0029cc, 0 2px 8px #000a;
             transition: background 0.2s, transform 0.2s;
             border: none;
             gap: 0.7rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 2px #000;
         }
         .download-button:hover {
-            background: #ff1f4b;
-            transform: translateY(-2px);
+            background: linear-gradient(90deg, #ff4b2b 60%, #ea0029 100%);
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 0 32px #ea0029cc;
         }
         .android-logo {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             vertical-align: middle;
+            filter: drop-shadow(0 0 4px #fff8);
         }
         footer {
             text-align: center;
             padding: 2rem 0;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            color: #ea0029cc;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
+    <div class="vault-glow"></div>
     <div class="container">
         <header>
             <img src="tribe-logo.png" alt="Tribe Gaming Logo" class="logo">
-            <h1>Tribe Gaming Pin Game</h1>
-            <div style='color:#ffd700;text-align:center;'>Now with forced update!</div>
+            <div class="main-title">ITS ALL FUN AND GAMES</div>
+            <div class="subtitle">Download the newest tribe games below.</div>
         </header>
 
         <div class="app-download">
             <div class="app-icon">
-                <img src="tribe-logo.png" alt="App Icon">
+                <img src="tribe-avatar.png" alt="App Avatar">
             </div>
             <div class="app-info">
-                <div class="app-title">Pin Game</div>
+                <div class="app-title">Guess the Pin</div>
                 <div class="app-version">Version 3.1</div>
                 <a href="downloads/pin-game.apk" class="download-button">
-                    <img src="android-logo.png" alt="Android" class="android-logo"> Download for Android
+                    <img src="android-logo.png" alt="Android" class="android-logo"> Download APK
                 </a>
             </div>
         </div>
 
         <footer>
-            <p>&copy; 2025 TEST Tribe Gaming. All rights reserved.</p>
+            &copy; 2025 Tribe Gaming. All rights reserved.
         </footer>
     </div>
-    
 </body>
-</html> 
+</html>
