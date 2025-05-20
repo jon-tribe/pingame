@@ -20,40 +20,79 @@
         }
         header {
             text-align: center;
-            padding: 2rem 0;
+            padding: 2rem 0 1rem 0;
         }
         .logo {
-            max-width: 200px;
+            max-width: 120px;
             margin-bottom: 1rem;
         }
         h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
-        .download-section {
+        .app-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            border-radius: 16px;
             padding: 2rem;
             margin: 2rem 0;
-            text-align: center;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+            gap: 2rem;
+        }
+        .app-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 20px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .app-icon img {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+        }
+        .app-info {
+            flex: 1;
+        }
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .app-version {
+            font-size: 1rem;
+            color: #ffd6e0;
+            margin-bottom: 1rem;
         }
         .download-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             background: #ea0029;
             color: white;
-            padding: 1rem 2rem;
-            border-radius: 5px;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            margin: 1rem 0;
-            transition: transform 0.2s;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: background 0.2s, transform 0.2s;
+            border: none;
+            gap: 0.7rem;
         }
         .download-button:hover {
+            background: #ff1f4b;
             transform: translateY(-2px);
         }
-        .version-info {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
+        .android-logo {
+            width: 28px;
+            height: 28px;
+            vertical-align: middle;
         }
         footer {
             text-align: center;
@@ -68,28 +107,26 @@
         <header>
             <img src="tribe-logo.png" alt="Tribe Gaming Logo" class="logo">
             <h1>Tribe Gaming Pin Game</h1>
+            <div style='color:#ffd700;text-align:center;'>Now with forced update!</div>
         </header>
 
-        <div class="download-section">
-            <h2>Download Latest Version</h2>
-            <p>Get the latest version of the Tribe Gaming Pin Game for Android.</p>
-            <a href="downloads/pin-game.apk" class="download-button">Download APK</a>
-            <p class="version-info">Version 1.0.0</p>
-        </div>
-
-        <div class="download-section">
-            <h2>How to Install</h2>
-            <ol style="text-align: left;">
-                <li>Download the APK file</li>
-                <li>Enable "Install from Unknown Sources" in your Android settings</li>
-                <li>Open the downloaded APK file</li>
-                <li>Follow the installation prompts</li>
-            </ol>
+        <div class="app-download">
+            <div class="app-icon">
+                <img src="tribe-logo.png" alt="App Icon">
+            </div>
+            <div class="app-info">
+                <div class="app-title">Pin Game</div>
+                <div class="app-version">Version 3.1</div>
+                <a href="downloads/pin-game.apk" class="download-button">
+                    <img src="android-logo.png" alt="Android" class="android-logo"> Download for Android
+                </a>
+            </div>
         </div>
 
         <footer>
-            <p>&copy; 2024 Tribe Gaming. All rights reserved.</p>
+            <p>&copy; 2025 TEST Tribe Gaming. All rights reserved.</p>
         </footer>
     </div>
+    
 </body>
 </html> 
